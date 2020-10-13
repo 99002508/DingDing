@@ -3,14 +3,14 @@ import socket
 
 def client_program():
     host = socket.gethostname()  # as both code is running on same pc
-    port = 5002  # socket server port number
+    port = 5003  # socket server port number
 
     client_socket = socket.socket()  # instantiate
     client_socket.connect((host, port))  # connect to the server
-
+    print("Are you 18 year above");
     message = input(" -> ")  # take input
 
-    while message.lower().strip() != 'bye':
+    while message.lower().strip() != 'no':
         client_socket.send(message.encode())  # send message
         data = client_socket.recv(1024).decode()  # receive response
 
