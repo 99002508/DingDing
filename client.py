@@ -39,27 +39,24 @@ def client_program():
                 reader = csv.reader(file)
                 for row in reader:
                     print(row)      
-        '''if(inv=client_socket.recv(1024).decode()):
-        	print("Choose correct package
-        print(inv);'''
         print("opening chat window for your fav")
         time.sleep(10)
         os.system('clear')
         print("-----connected-----Start DingDing-------")
         if message == "min":
-            for i in range(3):
+            for chat in range(3):
                 chat = input(" -> ")
                 client_socket.send(chat.encode())
                 chat_rec = client_socket.recv(1024).decode()
                 print(chat_rec)
         if message == "max":
-            for i in range(5):
+            for chat in range(5):
                 chat = input(" -> ")
                 client_socket.send(chat.encode())
                 chat_rec = client_socket.recv(1024).decode()
                 print(chat_rec)
         if message == "pro":
-            for i in range(10):
+            for chat in range(10):
                 chat = input(" -> ")
                 client_socket.send(chat.encode())
                 chat_rec = client_socket.recv(1024).decode()
