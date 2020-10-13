@@ -11,3 +11,7 @@ The project aims at developing a Python chat application, that allows the user t
 
 ## Future Scope
 Can integrate and enhance GUI for the application using Django.
+
+
+
+TEst Line
