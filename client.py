@@ -7,7 +7,7 @@ def client_program():
 
     client_socket = socket.socket()  # instantiate
     client_socket.connect((host, port))  # connect to the server
-    print("Are you 18 year above");
+    print("Are you 18+ ???");
     message = input(" -> ")  # take input
 
     while message.lower().strip() != 'no':
