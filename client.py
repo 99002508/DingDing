@@ -5,7 +5,7 @@ import csv
 
 def client_program():
     host = socket.gethostname()  # as both code is running on same pc
-    port = 5013  # socket server port number
+    port = 5015  # socket server port number
 
     client_socket = socket.socket()  # instantiate
     client_socket.connect((host, port))  # connect to the server
@@ -13,6 +13,8 @@ def client_program():
     message = input(" -> ")  # take input
     if(message.lower().strip() == 'no'):
     	print("You are Minor")
+    print("let us know your Gender");
+    gender=input('->');
 
     while message.lower().strip() != 'no':
         client_socket.send(message.encode())  # send message
@@ -30,11 +32,17 @@ def client_program():
         client_socket.send(response.encode()) #sending ok from client to server 
         bill= client_socket.recv(1024).decode()
         print(bill); #recieving bill
-       
-        with open('item.csv', 'r') as file:
-        	reader = csv.reader(file)
-        	for row in reader:
-        		print(row)
+        if(gender.lower().strip() == 'male'):
+        	with open('female.csv', 'r') as file:
+        		reader = csv.reader(file)
+        		for row in reader:
+        			print(row)
+        if(gender.lower().strip() == 'female'):
+        	with open('male.csv', 'r') as file:
+        		reader = csv.reader(file)
+        		for row in reader:
+        			print(row)
+        		
         
         '''if(inv=client_socket.recv(1024).decode()):
         	print("Choose correct package
