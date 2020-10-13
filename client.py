@@ -1,6 +1,7 @@
 import socket
 import os
 import time
+import csv
 
 def client_program():
     host = socket.gethostname()  # as both code is running on same pc
@@ -8,16 +9,16 @@ def client_program():
 
     client_socket = socket.socket()  # instantiate
     client_socket.connect((host, port))  # connect to the server
-    print("Are you 18 year above");
-   
-
+    print("Are you 18+?");
     message = input(" -> ")  # take input
+    if(message.lower().strip() == 'no'):
+    	print("You are Minor")
 
     while message.lower().strip() != 'no':
         client_socket.send(message.encode())  # send message
-        print("--------we are with 3 packages--------");
-        print("MIN----MAX----PRO");
-        print("select package");
+        print("--------We are with 3 packages--------");
+        print("1.MIN\n2.MAX\n3.PRO");
+        print("Select package");
         message = input(" -> ")  # again take input #sending package from client to server
         client_socket.send(message.encode())
         data = client_socket.recv(1024).decode()  # receive response
@@ -29,21 +30,39 @@ def client_program():
         client_socket.send(response.encode()) #sending ok from client to server 
         bill= client_socket.recv(1024).decode()
         print(bill); #recieving bill
+       
+        with open('item.csv', 'r') as file:
+        	reader = csv.reader(file)
+        	for row in reader:
+        		print(row)
         
         '''if(inv=client_socket.recv(1024).decode()):
         	print("Choose correct package
         print(inv);'''
         print("opening chat window for your fav");
-        time.sleep(1);
+        time.sleep(10);
         os.system('clear')
         print("-----connected-----Start DingDing-------");
-       #if (response==min)
-        for i in range(10):
-        	chat=input(" -> ")
-        	client_socket.send(chat.encode())
-        	chat_rec=client_socket.recv(1024).decode()
-        	print(chat_rec) 
+        if (message=="min"):
+        	for i in range(3):
+        		chat=input(" -> ")
+        		client_socket.send(chat.encode())
+        		chat_rec=client_socket.recv(1024).decode()
+        		print(chat_rec)
+        if (message=="max"):
+        	for i in range(5):
+        		chat=input(" -> ")
+        		client_socket.send(chat.encode())
+        		chat_rec=client_socket.recv(1024).decode()
+        		print(chat_rec)
+        if (message=="pro"):
+        	for i in range(10):
+        		chat=input(" -> ")
+        		client_socket.send(chat.encode())
+        		chat_rec=client_socket.recv(1024).decode()
+        		print(chat_rec)
         time.sleep(5);
+        break;
         
         #message = input(" -> ")  # again take input
 

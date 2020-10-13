@@ -56,12 +56,25 @@ def server_program():
         	inv="invalid";
         	conn.send(inv.encode());'''
         	
-                
-        for i in range(10):
-          	chat_rec=conn.recv(1024).decode()
-          	print(chat_rec)
-          	chat=input(" -> ")
-          	conn.send(chat.encode());
+        if(package=="min"):     
+        	for i in range(3):
+          		chat_rec=conn.recv(1024).decode()
+          		print(chat_rec)
+          		chat=input(" -> ")
+          		conn.send(chat.encode());
+        if(package=="max"):     
+        	for i in range(5):
+          		chat_rec=conn.recv(1024).decode()
+          		print(chat_rec)
+          		chat=input(" -> ")
+          		conn.send(chat.encode());
+        if(package=="pro"):     
+        	for i in range(10):
+          		chat_rec=conn.recv(1024).decode()
+          		print(chat_rec)
+          		chat=input(" -> ")
+          		conn.send(chat.encode());
+         
           	
         	
         	 
@@ -74,9 +87,6 @@ def server_program():
 if __name__ == '__main__':
     server_program()
   
-"""Using the below function, we broadcast the message to all 
-clients who's object is not the same as the one sending 
-the message """
 def broadcast(message, connection): 
     for clients in list_of_clients: 
         if clients!=connection: 
@@ -88,31 +98,18 @@ def broadcast(message, connection):
                 # if the link is broken, we remove the client 
                 remove(clients) 
   
-"""The following function simply removes the object 
-from the list that was created at the beginning of  
-the program"""
 def remove(connection): 
     if connection in list_of_clients: 
-        list_of_clients.remove(connection) 
-  
-while True: 
-  
-    """Accepts a connection request and stores two parameters,  
-    conn which is a socket object for that user, and addr  
-    which contains the IP address of the client that just  
-    connected"""
-    conn, addr = server.accept() 
-  
-    """Maintains a list of clients for ease of broadcasting 
-    a message to all available people in the chatroom"""
-    list_of_clients.append(conn) 
-  
-    # prints the address of the user that just connected 
-    print(addr[0] + " connected")
-  
-    # creates and individual thread for every user  
-    # that connects 
-    start_new_thread(clientthread,(conn,addr))     
-  
-conn.close() 
-server.close() 
+        list_of_clients.remove(connection)
+try:
+    while True:
+        conn, addr = server.accept()
+        list_of_clients.append(conn)
+        print(addr[0] + " connected")
+        start_new_thread(clientthread,(conn,addr))
+        conn.close()
+        server.close()      
+except NameError as e:
+	print("Client is minor")     
+
+
