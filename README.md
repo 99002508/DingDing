@@ -1,6 +1,12 @@
 # DingDing
 The project aims at developing a Python chat application, that allows the user to connect to a remote server for online hookups.
 
+## Concepts
+  - Network Programming
+  - Exception Handling
+  - Operating System
+  - File Handling
+
 ## Features
   - Start the session.
   - Check for age.
